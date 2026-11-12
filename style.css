@@ -36,3 +36,41 @@ dialog{color:var(--ink);border:0;padding:0;background:var(--cream)}dialog::backd
 .main-nav a.nav-book:hover,.main-nav a.nav-book.current{background:var(--ink);color:#fff}
 /* AOS: stop slide-in animations from creating sideways scroll */
 body{overflow-x:clip}
+
+/* Responsive QA fixes ------------------------------------------------------ */
+/* Hero overlay photo: anchor it just past the hero text column so it can never sit on the text or buttons */
+.hero-palette{left:47.5%}
+@media(max-width:1200px){.hero-palette{left:48.5%;width:20%}}
+@media(max-width:900px){.hero-copy{padding-right:7%}.hero-palette{left:50%;width:24%}}
+@media(max-width:680px){.hero-copy{padding-right:25px}.hero-palette{left:4%;width:40%}}
+/* Header: tablets use the hamburger menu (full menu does not fit beside the logo) */
+.main-nav .nav-book{white-space:nowrap}
+@media(max-width:900px){
+.header-inner{flex-wrap:wrap;gap:0;min-height:70px;padding-block:12px}
+.menu-toggle{display:flex;align-items:center;justify-content:center;margin-left:auto;min-width:44px;min-height:44px;border:1px solid #ffffff65;background:transparent;color:#fff;font-size:22px;line-height:1;padding:6px 12px}
+.header-contact{display:none}
+.main-nav{display:none;order:3;flex-direction:column;align-items:stretch;width:100%;margin-left:0;padding:22px 0 4px;gap:15px}
+.main-nav.is-open{display:flex}
+.main-nav a{font-size:17px}
+.main-nav .nav-book{text-align:center;font-size:12px;padding:13px}
+}
+/* Readability: no text below 11px */
+.eyebrow{font-size:clamp(11px,.625vw,12px)}
+.services-grid .text-link{font-size:12px}
+.footer-bottom{font-size:12px}
+.site-footer .contact-details h4,.contact-details h3,.contact-details h4{font-size:11px}
+.booking-steps{font-size:12px}
+.page-banner nav{font-size:12px}
+/* Footer contact column: let long email/address wrap instead of widening the page */
+.footer-grid>*{min-width:0}
+.contact-details a,.contact-details p{overflow-wrap:anywhere}
+@media(max-width:400px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:10px}.footer-bottom>span{max-width:none}}
+/* Phones: comfortable tap targets, long buttons stay tidy */
+@media(max-width:900px){.main-nav a{padding-block:8px}.main-nav{gap:4px}.main-nav .nav-book{margin-top:8px}}
+@media(max-width:680px){.button{min-height:44px}.button-small{min-height:44px}.button{letter-spacing:1px;text-align:center}}
+.booking-page-panel .booking-steps{font-size:12px}
+@media(max-width:900px){.main-nav a{padding-block:10px}}
+.dialog-top .eyebrow{font-size:11px}
+.button{text-align:center;line-height:1.35}
+/* Footer on phones: brand gets its own row so it can't run into the Explore links */
+@media(max-width:680px){.footer-grid>div:first-child{grid-column:1/-1}}
