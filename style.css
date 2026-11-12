@@ -18,3 +18,21 @@ dialog{color:var(--ink);border:0;padding:0;background:var(--cream)}dialog::backd
 @media(max-width:1050px){.header-contact{display:none}.booking-page-layout{gap:35px}.booking-page-panel{padding:25px}.booking-page-panel .booking-steps li span{display:block;margin:4px 0 0}}
 @media(max-width:760px){.booking-page-layout{grid-template-columns:1fr;gap:30px;padding-block:45px 65px}.booking-page-intro{padding:0}.booking-page-intro>p:not(.eyebrow){max-width:none}.booking-help{margin-top:20px}.booking-page-panel{padding:25px 20px}.booking-page-panel .form-grid{grid-template-columns:1fr}.booking-page-panel .form-grid input,.booking-page-panel .form-grid select,.booking-page-panel .form-grid textarea{font-size:16px}.page-banner{padding:50px 0 40px}}
 @media(max-width:680px){.main-nav{align-items:stretch;gap:15px}.main-nav .nav-book{text-align:center;font-size:12px;padding:13px}.booking-page-intro h2{font-size:32px}}
+
+/* Client revisions: stronger button contrast, logo badge, icon-only mobile menu */
+.button{color:var(--ink);font-weight:700;border-color:#e0a800;box-shadow:0 2px 0 #c99700}
+.button:hover{background:#ffd95e;border-color:#c99700;color:#111}
+.button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.button-outline{color:var(--ink);border-color:var(--ink);border-width:2px;box-shadow:none}
+.button-outline:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.main-nav .nav-book{font-weight:700;color:#111}
+.brand{display:inline-flex;align-items:center;gap:12px}
+.brand-logo{width:clamp(56px,3.8vw,72px);height:clamp(56px,3.8vw,72px);border-radius:50%;background:#fff;padding:2px;object-fit:contain;filter:none;flex-shrink:0}
+.footer-grid .brand{display:inline-flex}
+@media (max-width:680px){.menu-toggle{font-size:22px;line-height:1;padding:6px 12px}.brand-logo{width:52px;height:52px}}
+.button{font-size:clamp(12px,.75vw,14px)}
+.button-small,.hero .button,.form-actions .button{font-size:12px}
+@media (max-width:680px){.form-actions .button{font-size:11px}}
+.main-nav a.nav-book:hover,.main-nav a.nav-book.current{background:var(--ink);color:#fff}
+/* AOS: stop slide-in animations from creating sideways scroll */
+body{overflow-x:clip}

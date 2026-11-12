@@ -11,7 +11,8 @@ navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', 
   menuButton.setAttribute('aria-expanded', 'false');
   navigation.classList.remove('is-open');
 }));
-document.querySelector('#year').textContent = new Date().getFullYear();
+const yearEl = document.querySelector('#year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Native dialogs provide keyboard focus containment, Escape and focus restoration.
 const bookingDialog = document.querySelector('#booking-dialog');
@@ -225,3 +226,10 @@ if (contactForm) contactForm.addEventListener('submit', event => {
   window.location.href = 'mailto:tptunde100@yahoo.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   document.querySelector('#contact-status').textContent = 'Your email app has been requested. Please send the draft there. You can also email tptunde100@yahoo.com directly.';
 });
+
+// Scroll animations (AOS). Skipped for visitors who prefer reduced motion.
+if (window.AOS) {
+  AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60,
+    disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches });
+  window.addEventListener('load', () => AOS.refresh());
+}
