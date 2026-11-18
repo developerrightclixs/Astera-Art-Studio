@@ -18,9 +18,13 @@ HTML/CSS implementation based on the supplied approved PDFs. Open `index.html` i
 - `services.html`: dedicated service overview and process.
 - `gallery.html`: full gallery with image viewing.
 - `contact.html`: dedicated contact details and email-draft form.
-- `booking.html`: standalone service-first booking preview.
+- `booking.html`: Book a Class hub linking to each service's own booking flow.
+- `events.html`, `event.html`, `event-checkout.html`: Paint & Parties listing, event page and booking/payment.
+- `kids-art-club.html`, `beginner-painting.html`: 3-step booking with age-filtered sessions.
+- `private-lessons.html`: registration form, no payment.
+- `booking-data.js`: admin-managed booking content (events, sessions, lesson types).
 - `style.css`: shared design tokens, layouts, components and responsive styles.
-- `script.js`: navigation, booking dialog, service-specific preferred-date state, gallery viewer and email draft handoff.
+- `script.js`: navigation, the four booking flows, gallery viewer and email draft handoff.
 - `assets/`: original image assets extracted from H1; all imagery loads locally.
 - `reference/`: PDF renders, screenshots and browser verification helpers; not needed for production.
 
@@ -30,11 +34,18 @@ Hero and gallery images currently match the reference PDF. Replace them with the
 
 System Georgia and Arial approximate the PDF typography. The PDF uses outlined/Type3 text and does not supply reusable webfont files. The logo is a CSS text approximation; replace it with the client's original logo asset when available. Header phone/email actions replace social links whose destinations have not been supplied.
 
-## Booking and contact behaviour
+## Booking methods by service
 
-Every Book a Class link opens the dedicated booking page at service selection. Service-specific links preselect their service without skipping this step. Options: Paint Parties, Kids Art Club, Beginner Painting, Private Lessons.
+Book a Class (booking.html) is a hub with one card per service. Each service books differently:
 
-Each service maintains a separate preferred date in memory. Paint Parties has its own named calendar view and details form flow. Date and time choices are preferences, not live availability. Required details are validated before review. The payment step explicitly states that integration is pending. Users can download their personal plan; no booking is submitted, reserved or persisted. No card information is collected.
+1. **Paint & Parties**: events.html lists events as cards (image, title, Book Now). event.html?id=… is the event page: title header, image on the left, and on the right the date, time, number of people, age bracket, highlights, we provide / you bring, where & when, note and cost, with Book Now at the bottom. event-checkout.html?event=… keeps the selected event's details, collects the guest's details and number of spots, then shows a payment step that can differ per event: `online` (full price), `deposit` (deposit now, balance on the day) or `at-venue` (reserve now, pay at the event). Past events are listed under Past events and can't be booked.
+2. **Kids Art Club** (kids-art-club.html): 3 steps. Step 1 is your information. Step 2 shows only the sessions whose age range includes the child's age; each session can have several time slots. Step 3 completes the booking.
+3. **Beginner Painting** (beginner-painting.html): the same 3 steps, split into Adults and Kids. Each part has its own sessions.
+4. **Private Lessons** (private-lessons.html): a registration form with no payment. The lesson-type dropdown comes from the data file. Submitting opens an email draft to the studio.
+
+**Admin data:** all events, sessions (with age ranges and time slots), prices, payment methods and lesson types are set in `booking-data.js`. The pages never need editing. In WordPress, print the same `window.ASTERA_BOOKING` object from custom post types or ACF fields. The current content is sample data: prices, capacities, age brackets and session times need confirming by the client. The Little Ghost image is cropped from the client's screen photo; replace it with the original artwork.
+
+**Payment:** the payment buttons are placeholders. Nothing is reserved, charged or stored until a provider (e.g. Stripe or Square) is connected during WordPress development.
 
 The contact form opens an email draft in the visitor's mail app. The visitor sends it there. It is not a server-backed contact form.
 

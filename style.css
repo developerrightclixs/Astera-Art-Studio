@@ -35,7 +35,7 @@ dialog{color:var(--ink);border:0;padding:0;background:var(--cream)}dialog::backd
 @media (max-width:680px){.form-actions .button{font-size:11px}}
 .main-nav a.nav-book:hover,.main-nav a.nav-book.current{background:var(--ink);color:#fff}
 /* AOS: stop slide-in animations from creating sideways scroll */
-body{overflow-x:clip}
+html,body{overflow-x:clip}
 
 /* Responsive QA fixes ------------------------------------------------------ */
 /* Hero overlay photo: anchor it just past the hero text column so it can never sit on the text or buttons */
@@ -74,3 +74,116 @@ body{overflow-x:clip}
 .button{text-align:center;line-height:1.35}
 /* Footer on phones: brand gets its own row so it can't run into the Explore links */
 @media(max-width:680px){.footer-grid>div:first-child{grid-column:1/-1}}
+
+/* Booking methods by service ---------------------------------------------- */
+/* Hub: booking.html — one card per service, each with its own booking method */
+.booking-hub{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.hub-card{background:#fff;border:1px solid var(--line);padding:30px 26px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s,box-shadow .2s}
+.hub-card:hover,.hub-card:focus-visible{border-color:var(--green);transform:translateY(-3px);box-shadow:0 10px 24px #2e7d3214}
+.hub-card h2{font-size:clamp(22px,1.5vw,28px)}
+.hub-card .text-link{margin-top:auto;align-self:flex-start;font-size:13px}
+.hub-method{list-style:none;padding:0;margin:4px 0 8px;counter-reset:hub;display:grid;gap:9px;font-size:13px;color:var(--muted)}
+.hub-method li{counter-increment:hub;display:flex;gap:10px;align-items:baseline}
+.hub-method li::before{content:counter(hub);font:700 12px/1 var(--sans);background:var(--mint);color:var(--green);width:22px;height:22px;display:inline-grid;place-items:center;flex-shrink:0;border-radius:50%}
+.method-steps{list-style:none;padding:0;margin:0;counter-reset:step;display:grid;gap:18px;max-width:360px}
+.method-steps li{counter-increment:step;display:grid;grid-template-columns:34px 1fr;column-gap:14px}
+.method-steps li::before{content:counter(step);grid-row:span 2;width:34px;height:34px;display:grid;place-items:center;background:var(--green);color:#fff;font:700 14px/1 var(--serif);border-radius:0 10px 0 10px}
+.method-steps b{font:700 17px/1.3 var(--serif)}
+.method-steps span{font-size:13px;color:var(--muted)}
+.booking-steps li.done{color:var(--ink)}
+
+/* Events listing */
+.event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.event-card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.event-card-image{display:block;aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--mint)}
+.event-card-image img{transition:transform .35s;object-position:center 22%}
+#private-lesson-form{margin-top:26px}
+.event-card:hover .event-card-image img{transform:scale(1.04)}
+.event-badge{position:absolute;left:14px;top:14px;background:var(--ink);color:#fff;font-size:12px;padding:5px 10px;letter-spacing:.5px}
+.event-card-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.event-card-date{font:700 12px/1.4 var(--sans);letter-spacing:1px;text-transform:uppercase;color:var(--green)}
+.event-card h3{font-size:clamp(20px,1.35vw,26px)}
+.event-card h3 a:hover{color:var(--green)}
+.event-card-summary{font-size:14px}
+.event-card-meta{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:7px;font-size:13px;color:var(--muted)}
+.event-card-meta li{display:flex;gap:9px;align-items:flex-start}
+.event-card-meta .icon{width:17px;height:17px;color:var(--green);margin-top:1px}
+.event-card-footer{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.event-card-price{font:700 15px/1.3 var(--serif)}
+.event-card.is-past{opacity:.75}
+.past-events-title{margin:70px 0 28px;font-size:clamp(24px,1.6vw,30px)}
+
+/* Event internal page: title header, image left, details right, Book Now at bottom */
+.event-banner h1{max-width:900px;margin-inline:auto}
+.banner-action{margin-top:28px!important}
+.event-section{padding-block:70px 110px}
+.event-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.event-image{margin:0;position:sticky;top:30px;background:#101820;border-radius:0 0 42px 0;overflow:hidden}
+.event-image img{height:auto;max-height:82vh;object-fit:contain}
+.event-info{display:flex;flex-direction:column;gap:30px;min-width:0}
+.event-facts{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.event-facts li{display:flex;gap:14px;align-items:center;background:var(--mint);padding:14px 16px}
+.event-facts b{display:block;font:700 15px/1.35 var(--serif)}
+.fact-label{display:block;font:700 11px/1.4 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.event-highlights{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16px;line-height:1.5}
+.event-highlights li::marker{color:var(--green)}
+.event-block h2{font-size:22px;margin-bottom:14px}
+.check-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.check-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.check-list .icon{width:20px;height:20px;color:var(--green);stroke-width:2.4;margin-top:1px}
+.event-where{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.event-where>div{border:1px solid var(--line);background:#fff;padding:18px}
+.event-where dt{display:flex;gap:8px;align-items:center;font:700 11px/1.4 var(--sans);letter-spacing:1.2px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.event-where dt .icon{width:17px;height:17px}
+.event-where dd{margin:0;display:grid;gap:3px;font-size:14px;color:var(--muted)}
+.event-where dd b{font:700 16px/1.35 var(--serif);color:var(--ink)}
+.event-note{background:#fff7dc;border-left:4px solid var(--yellow);padding:16px 18px;font-size:14px;color:var(--ink)}
+.event-cost{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.event-cost>div:first-child b{display:block;font:700 26px/1.2 var(--serif);margin:4px 0}
+.event-cost small{font-size:13px;color:var(--muted)}
+.event-book{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.event-book p{font-size:13px;font-style:italic}
+.event-book .button{min-width:220px}
+.event-ended{font-size:14px;background:var(--mint);padding:14px 16px}
+.event-info>.text-link{align-self:flex-start;font-size:13px}
+
+/* Event checkout */
+.checkout-event{background:#fff;border:1px solid var(--line);overflow:hidden}
+.checkout-event>img{aspect-ratio:4/3;height:auto}
+.checkout-event-body{padding:24px;display:grid;gap:14px}
+.checkout-event-body .eyebrow{margin:0}
+.checkout-event-body h2{font-size:clamp(24px,1.6vw,30px)}
+.checkout-price{display:grid;gap:3px;border-top:1px solid var(--line);padding-top:14px}
+.checkout-price b{font:700 20px/1.3 var(--serif);color:var(--ink)}
+.checkout-price small{font-size:13px}
+.checkout-event-body .text-link{justify-self:start;font-size:13px}
+.booking-summary{font-size:14px;overflow-wrap:anywhere;display:grid;grid-template-columns:1fr 1.7fr;gap:10px 12px;margin:0}
+.booking-summary dt{color:var(--muted)}
+.booking-summary dd{margin:0}
+
+/* Kids Art Club / Beginner Painting: part choice + age-filtered sessions */
+.part-choice{margin-bottom:22px}
+.part-choice-label{font:600 14px/1.4 var(--serif);color:var(--ink);margin-bottom:10px}
+.part-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.part-options label{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--cream);padding:16px;cursor:pointer}
+.part-options label:has(input:checked){border-color:var(--green);background:var(--mint)}
+.part-options input,.slot-options input{accent-color:var(--green);width:17px;height:17px;margin:0;flex-shrink:0}
+.part-options b{display:block;font:700 19px/1.2 var(--serif)}
+.part-options small{font-size:12px;color:var(--muted)}
+.session-list{display:grid;gap:14px}
+.session-card{border:1px solid var(--line);background:var(--cream);padding:18px 18px 16px}
+.session-card:has(input:checked){border-color:var(--green);background:var(--mint)}
+.session-card legend{float:left;width:100%;margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:20px}
+.session-card legend+*{clear:both}
+.session-age{font:700 11px/1.4 var(--sans);letter-spacing:1px;text-transform:uppercase;color:var(--green);white-space:nowrap}
+.session-card>p{font-size:14px}
+.session-meta{margin-top:6px;font-size:13px!important;color:var(--ink)}
+.slot-options{display:grid;gap:8px;margin-top:14px}
+.slot-options label{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);padding:11px 13px;font-size:14px;cursor:pointer}
+.slot-options label:has(input:checked){border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.form-actions .button:disabled{opacity:.45;cursor:not-allowed}
+
+@media(max-width:1200px){.booking-hub{grid-template-columns:1fr 1fr}.event-layout{gap:40px}}
+@media(max-width:1050px){.event-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.event-layout{grid-template-columns:1fr}.event-image{position:static;max-width:560px;width:100%;justify-self:center}}
+@media(max-width:680px){.booking-hub,.event-grid{grid-template-columns:1fr}.event-facts,.event-where{grid-template-columns:1fr}.event-section{padding-block:40px 70px}.event-cost{flex-direction:column;align-items:stretch}.event-book{align-items:stretch}.event-book .button{min-width:0;width:100%}.part-options{grid-template-columns:1fr}.booking-summary{grid-template-columns:1fr 1.4fr;font-size:13px}.past-events-title{margin-top:50px}.session-card legend{flex-direction:column;gap:2px}}
