@@ -19,7 +19,8 @@ HTML/CSS implementation based on the supplied approved PDFs. Open `index.html` i
 - `gallery.html`: full gallery with image viewing.
 - `contact.html`: dedicated contact details and email-draft form.
 - `booking.html`: Book a Class hub linking to each service's own booking flow.
-- `events.html`, `event.html`, `event-checkout.html`: Paint & Parties listing, event page and booking/payment.
+- `events.html`: Paint Nights. A grid of static cards (3 per row) with painting image, name, location and date, hour, price and a "Book your spot" button that opens that night's Eventbrite page. To add a paint night, copy one `<article>` card. Dates, prices and Eventbrite links are dummy for now.
+- `event.html`, `event-checkout.html`: the earlier on-site event page and checkout; no longer linked from the Paint Nights page.
 - `kids-art-club.html`: Arts & Crafts Club for Kids (Coming soon). Three static age cards (6–9, 10–13, 14–17) with location, date/hour and prices; booking is by email to info@astoraartstudio.com. Edit the details directly in the HTML.
 - `beginner-painting.html`: Beginners Paint Classes (Coming soon). Same layout as the Kids Art Club page with age cards 10–13, 14–17 and 18+; booking by email. Edit the details directly in the HTML.
 - `private-lessons.html`: registration form, no payment.
@@ -39,7 +40,7 @@ System Georgia and Arial approximate the PDF typography. The PDF uses outlined/T
 
 Book a Class (booking.html) is a hub with one card per service. Each service books differently:
 
-1. **Paint & Parties**: events.html lists events as cards (image, title, Book Now). event.html?id=… is the event page: title header, image on the left, and on the right the date, time, number of people, age bracket, highlights, we provide / you bring, where & when, note and cost, with Book Now at the bottom. event-checkout.html?event=… keeps the selected event's details, collects the guest's details and number of spots, then shows a payment step that can differ per event: `online` (full price), `deposit` (deposit now, balance on the day) or `at-venue` (reserve now, pay at the event). Past events are listed under Past events and can't be booked.
+1. **Paint Nights** (events.html): cards with image, painting name, location and date, hour and price. "Book your spot" opens the event's Eventbrite page in a new tab.
 2. **Kids Art Club** (kids-art-club.html): Coming soon. Three age cards (6–9, 10–13, 14–17) with location, date and hour, and individual and bundle prices. Visitors book by emailing info@astoraartstudio.com.
 3. **Beginner Painting** (beginner-painting.html): Coming soon. Same layout as Kids Art Club with age cards 10–13, 14–17 and 18+, and the same email booking line.
 4. **Private Lessons** (private-lessons.html): a registration form with no payment. The lesson-type dropdown comes from the data file. Submitting opens an email draft to the studio.

@@ -33,9 +33,8 @@ const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
     const fail=m=>{throw new Error(m)};
     const page=location.pathname.split('/').pop()+location.search;
     if(page==='events.html'){
-      if(document.querySelectorAll('#event-list .event-card').length!==3)fail('upcoming count');
-      if(document.querySelectorAll('#past-event-list .event-card').length!==1||document.querySelector('#past-events').hidden)fail('past events');
-      if(!document.querySelector('#event-list .event-card .button').href.includes('event.html?id='))fail('card link');
+      const cards=document.querySelectorAll('.paint-night-card');if(cards.length!==3)fail('paint night count');
+      cards.forEach(c=>{const b=c.querySelector('.button');if(!b||b.textContent!=='Book your spot'||!b.href.includes('eventbrite.'))fail('book your spot link');if(!c.querySelector('img')||!c.querySelector('h3')||!c.querySelector('.event-card-price'))fail('card content')});
     }
     if(page.startsWith('event.html?id=little')){
       if(document.querySelector('h1').textContent!=='Little Ghost in the Night')fail('event title');
