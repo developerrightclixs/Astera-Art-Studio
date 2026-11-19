@@ -20,7 +20,8 @@ HTML/CSS implementation based on the supplied approved PDFs. Open `index.html` i
 - `contact.html`: dedicated contact details and email-draft form.
 - `booking.html`: Book a Class hub linking to each service's own booking flow.
 - `events.html`, `event.html`, `event-checkout.html`: Paint & Parties listing, event page and booking/payment.
-- `kids-art-club.html`, `beginner-painting.html`: 3-step booking with age-filtered sessions.
+- `kids-art-club.html`: Arts & Crafts Club for Kids (Coming soon). Three static age cards (6–9, 10–13, 14–17) with location, date/hour and prices; booking is by email to info@astoraartstudio.com. Edit the details directly in the HTML.
+- `beginner-painting.html`: 3-step booking with age-filtered sessions.
 - `private-lessons.html`: registration form, no payment.
 - `booking-data.js`: admin-managed booking content (events, sessions, lesson types).
 - `style.css`: shared design tokens, layouts, components and responsive styles.

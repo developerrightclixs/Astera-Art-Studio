@@ -58,19 +58,11 @@ const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
       document.querySelector('#checkout-pay').click();if(!f.querySelector('.form-status').textContent.includes('Preview only'))fail('pay status');
     }
     if(page==='kids-art-club.html'){
-      const f=document.querySelector('#class-booking-form');
-      if(!document.querySelector('#part-choice').hidden)fail('kids part choice shown');
-      f.elements.name.value='Parent';f.elements.email.value='p@example.com';f.elements.phone.value='5195550100';f.elements.age.value='8';
-      const [next]=f.querySelectorAll('[data-next]');next.click();if(!f.querySelector('[data-stage="1"]').hidden)fail('participant name not required');
-      f.elements.participant.value='Kid';f.elements.age.value='20';next.click();if(!f.querySelector('[data-stage="1"]').hidden)fail('age max not enforced');
-      f.elements.age.value='8';next.click();
-      const titles=[...document.querySelectorAll('.session-card legend b')].map(b=>b.textContent);
-      if(titles.join()!=='Young Creators')fail('age filter '+titles);
-      if(document.querySelectorAll('.session-card input[name=slot]').length!==2)fail('slots');
-      f.querySelectorAll('[data-next]')[1].click();if(!f.querySelector('[data-stage="2"]').hidden)fail('slot not required');
-      document.querySelector('.session-card input').click();f.querySelectorAll('[data-next]')[1].click();
-      if(f.querySelector('[data-stage="2"]').hidden||!document.querySelector('#class-summary').textContent.includes('Young Creators'))fail('review');
-      document.querySelector('#complete-class-booking').click();
+      const ages=[...document.querySelectorAll('.age-card h3')].map(h=>h.textContent);
+      if(ages.join()!=='Ages 6–9,Ages 10–13,Ages 14–17')fail('age cards '+ages);
+      if(document.querySelectorAll('.age-card-prices dt').length!==6)fail('age card prices');
+      if(!document.querySelector('.coming-soon-badge'))fail('coming soon label');
+      if(!document.querySelector('.email-booking a[href^="mailto:info@astoraartstudio.com"]'))fail('email booking link');
     }
     if(page==='beginner-painting.html'){
       const f=document.querySelector('#class-booking-form');
