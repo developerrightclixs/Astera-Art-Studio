@@ -65,18 +65,11 @@ const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
       if(!document.querySelector('.email-booking a[href^="mailto:info@astoraartstudio.com"]'))fail('email booking link');
     }
     if(page==='beginner-painting.html'){
-      const f=document.querySelector('#class-booking-form');
-      if(document.querySelectorAll('#part-choice input[name=part]').length!==2)fail('adult/kids parts');
-      if(!f.querySelector('[data-field=participant]').hidden)fail('adult participant field');
-      f.elements.name.value='Adult';f.elements.email.value='a@example.com';f.elements.phone.value='5195550100';f.elements.age.value='30';
-      const [next]=f.querySelectorAll('[data-next]');next.click();
-      if(document.querySelectorAll('.session-card').length!==2)fail('adult sessions');
-      f.querySelector('[data-prev]').click();
-      const kids=document.querySelector('#part-choice input[value=kids]');kids.checked=true;kids.dispatchEvent(new Event('change',{bubbles:true}));
-      if(f.querySelector('[data-field=participant]').hidden)fail('kids participant field');
-      f.elements.participant.value='Kid';f.elements.age.value='7';next.click();
-      const titles=[...document.querySelectorAll('.session-card legend b')].map(b=>b.textContent);
-      if(titles.join()!=='First Brushstrokes')fail('kids filter '+titles);
+      const ages=[...document.querySelectorAll('.age-card h3')].map(h=>h.textContent);
+      if(ages.join()!=='Ages 10–13,Ages 14–17,Ages 18+')fail('beginner age cards '+ages);
+      if(document.querySelectorAll('.age-card-prices dt').length!==6)fail('beginner prices');
+      if(!document.querySelector('.coming-soon-badge'))fail('beginner coming soon');
+      if(!document.querySelector('.email-booking a[href^="mailto:info@astoraartstudio.com"]'))fail('beginner email link');
     }
     if(page==='private-lessons.html'){
       const s=document.querySelector('[name=lessonType]');if(s.options.length!==7)fail('lesson types');
@@ -117,7 +110,6 @@ const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
   await evaluate(`(()=>{const f=document.querySelector('#event-checkout-form');f.elements.name.value='Test';f.elements.email.value='t@example.com';f.elements.phone.value='5195550100';f.elements.tickets.value='8';f.querySelector('[data-next]').click()})()`);
   await shot('event-checkout-desktop.png');
   await go('beginner-painting.html');
-  await evaluate(`(()=>{const f=document.querySelector('#class-booking-form');f.elements.name.value='Test';f.elements.email.value='t@example.com';f.elements.phone.value='5195550100';f.elements.age.value='30';f.querySelector('[data-next]').click()})()`);
   await shot('beginner-sessions-desktop.png');
   await go('private-lessons.html');await shot('private-lessons-desktop.png');
   if(exceptions.length)throw new Error(JSON.stringify(exceptions));

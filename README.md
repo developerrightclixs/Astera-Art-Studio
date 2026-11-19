@@ -21,7 +21,7 @@ HTML/CSS implementation based on the supplied approved PDFs. Open `index.html` i
 - `booking.html`: Book a Class hub linking to each service's own booking flow.
 - `events.html`, `event.html`, `event-checkout.html`: Paint & Parties listing, event page and booking/payment.
 - `kids-art-club.html`: Arts & Crafts Club for Kids (Coming soon). Three static age cards (6–9, 10–13, 14–17) with location, date/hour and prices; booking is by email to info@astoraartstudio.com. Edit the details directly in the HTML.
-- `beginner-painting.html`: 3-step booking with age-filtered sessions.
+- `beginner-painting.html`: Beginners Paint Classes (Coming soon). Same layout as the Kids Art Club page with age cards 10–13, 14–17 and 18+; booking by email. Edit the details directly in the HTML.
 - `private-lessons.html`: registration form, no payment.
 - `booking-data.js`: admin-managed booking content (events, sessions, lesson types).
 - `style.css`: shared design tokens, layouts, components and responsive styles.
@@ -40,8 +40,8 @@ System Georgia and Arial approximate the PDF typography. The PDF uses outlined/T
 Book a Class (booking.html) is a hub with one card per service. Each service books differently:
 
 1. **Paint & Parties**: events.html lists events as cards (image, title, Book Now). event.html?id=… is the event page: title header, image on the left, and on the right the date, time, number of people, age bracket, highlights, we provide / you bring, where & when, note and cost, with Book Now at the bottom. event-checkout.html?event=… keeps the selected event's details, collects the guest's details and number of spots, then shows a payment step that can differ per event: `online` (full price), `deposit` (deposit now, balance on the day) or `at-venue` (reserve now, pay at the event). Past events are listed under Past events and can't be booked.
-2. **Kids Art Club** (kids-art-club.html): 3 steps. Step 1 is your information. Step 2 shows only the sessions whose age range includes the child's age; each session can have several time slots. Step 3 completes the booking.
-3. **Beginner Painting** (beginner-painting.html): the same 3 steps, split into Adults and Kids. Each part has its own sessions.
+2. **Kids Art Club** (kids-art-club.html): Coming soon. Three age cards (6–9, 10–13, 14–17) with location, date and hour, and individual and bundle prices. Visitors book by emailing info@astoraartstudio.com.
+3. **Beginner Painting** (beginner-painting.html): Coming soon. Same layout as Kids Art Club with age cards 10–13, 14–17 and 18+, and the same email booking line.
 4. **Private Lessons** (private-lessons.html): a registration form with no payment. The lesson-type dropdown comes from the data file. Submitting opens an email draft to the studio.
 
 **Admin data:** all events, sessions (with age ranges and time slots), prices, payment methods and lesson types are set in `booking-data.js`. The pages never need editing. In WordPress, print the same `window.ASTERA_BOOKING` object from custom post types or ACF fields. The current content is sample data: prices, capacities, age brackets and session times need confirming by the client. The Little Ghost image is cropped from the client's screen photo; replace it with the original artwork.
